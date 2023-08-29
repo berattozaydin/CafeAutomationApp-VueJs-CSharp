@@ -16,4 +16,5 @@ app.use(PrimeVue);
 app.use(PrimeToastService);
 app.use(PrimeConfirmationService); 
 install();
+
 app.mount('#app')
