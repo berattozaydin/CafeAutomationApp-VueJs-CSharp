@@ -1,4 +1,6 @@
 ﻿using CafeAutomationBLL.Managers;
+using CafeAutomationDAL.BaseModel;
+using CafeAutomationDAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +14,11 @@ namespace CafeAutomationServer.Controllers
         public AuthController(AuthManager authManager)
         {
             this.authManager = authManager; 
+        }
+        [HttpGet]
+        public ResponseReturn Login(int userId)
+        {
+            return authManager.Login(userId);
         }
     }
 }

@@ -6,7 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddSwaggerGen(c =>
+{
+    c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+    c.IgnoreObsoleteActions();
+    c.IgnoreObsoleteProperties();
+    c.CustomSchemaIds(type => type.FullName);
+});
 // Add services to the container.
 var connectionStrings = builder.Configuration.GetSection("ConnectionString").Get<ConnectionString>();
 builder.Services.AddDbContext<CafeautomationappContext>(o =>
@@ -23,6 +29,22 @@ var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthorization();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseCors();
+}
+
+app.UseCors(builder =>
+{
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+
+});
 app.MapControllers();
 
 app.Run();
