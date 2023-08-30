@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CafeAutomationBLL\CafeAutomationBLL.csproj" />
+    <ProjectReference Include="..\CafeAutomationDAL\CafeAutomationDAL.csproj" />
   </ItemGroup>
 
 </Project>
