@@ -15,7 +15,7 @@ namespace CafeAutomationServer.Controllers
         {
             this.authManager = authManager; 
         }
-        [HttpGet]
+        [HttpPost]
         public ResponseReturn Login(int userId)
         {
             return authManager.Login(userId);
